@@ -1,16 +1,19 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.6.RELEASE'
+		springBootVersion = '1.5.9.RELEASE'
 	}
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	//	classpath("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
 	}
 }
 
+apply plugin: 'maven'
 apply plugin: 'java'
+apply plugin: 'war'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
@@ -30,11 +33,11 @@ repositories {
 
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web')
-	implementation('org.liquibase:liquibase-core')
+	//implementation('org.liquibase:liquibase-core')
 	runtimeOnly('org.postgresql:postgresql')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	compile "com.github.creactiviti:giraphe:0.0.1-SNAPSHOT"
-	compile "com.zhokhov.graphql:graphql-datetime-autoconfigure:1.2.0"
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.0.6.RELEASE'
+	//compile "org.springframework.boot:spring-boot-starter-actuator"
+	//compile "com.zhokhov.graphql:graphql-datetime-autoconfigure:1.2.0"
 	
 }
