@@ -21,7 +21,10 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
-	mavenLocal()
+	jcenter()
+	maven {
+		url "https://jitpack.io"
+	}
 }
 
 
@@ -30,6 +33,8 @@ dependencies {
 	implementation('org.liquibase:liquibase-core')
 	runtimeOnly('org.postgresql:postgresql')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
-	compile "com.creactiviti:giraphe:0.0.1-SNAPSHOT"
+	compile "com.github.creactiviti:giraphe:0.0.1-SNAPSHOT"
 	compile "com.zhokhov.graphql:graphql-datetime-autoconfigure:1.2.0"
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.0.6.RELEASE'
+	
 }
