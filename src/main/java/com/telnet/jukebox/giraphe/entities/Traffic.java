@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import com.creactiviti.giraphe.graphql.Fields;
 import com.creactiviti.giraphe.graphql.TypeBuilder;
 import com.creactiviti.giraphe.graphql.Types;
-import com.zhokhov.graphql.datetime.GraphQLDate;
+//import com.zhokhov.graphql.datetime.GraphQLDate;
 
 import graphql.Scalars;
 import graphql.language.Argument;
