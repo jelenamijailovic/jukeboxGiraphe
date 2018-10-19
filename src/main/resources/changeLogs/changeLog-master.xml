@@ -133,7 +133,7 @@
 			<column name="artist_id" type="integer">
 				<constraints nullable="true" />
 			</column>
-			
+
 			<column name="price_id" type="integer">
 				<constraints nullable="true" />
 			</column>
@@ -160,7 +160,7 @@
 			<column name="user" type="varchar(255)">
 				<constraints nullable="true" />
 			</column>
-			
+
 			<column name="song_id" type="integer">
 				<constraints nullable="true" />
 			</column>
@@ -170,17 +170,151 @@
 		</createTable>
 
 	</changeSet>
+
+	<changeSet id="20181002085900-1" author="jhipster">
+		<insert tableName="genre">
+			<column name="id">1</column>
+			<column name="name">Rock</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085901-1" author="jhipster">
+		<insert tableName="genre">
+			<column name="id">2</column>
+			<column name="name">Punk</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085902-1" author="jhipster">
+		<insert tableName="genre">
+			<column name="id">3</column>
+			<column name="name">Narodna</column>
+		</insert>
+	</changeSet>
 	
-	 <changeSet author="jhipster" id="20181002085807-1">
-        <addForeignKeyConstraint baseColumnNames="genre_id" baseTableName="artist" baseTableSchemaName="public" constraintName="fk_artists_genres" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="genre" referencedTableSchemaName="public" referencesUniqueColumn="false"/>
-    </changeSet>
-    <changeSet author="jhipster" id="20181002085808-1">
-        <addForeignKeyConstraint baseColumnNames="artist_id" baseTableName="song" baseTableSchemaName="public" constraintName="fk_songs_artists" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="artist" referencedTableSchemaName="public" referencesUniqueColumn="false"/>
-    </changeSet>
-    <changeSet author="jhipster" id="20181002085809-1">
-        <addForeignKeyConstraint baseColumnNames="price_id" baseTableName="song" baseTableSchemaName="public" constraintName="fk_songs_prices" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="price" referencedTableSchemaName="public" referencesUniqueColumn="false"/>
-    </changeSet>
-    <changeSet author="jhipster" id="20181002085810-1">
-        <addForeignKeyConstraint baseColumnNames="song_id" baseTableName="traffic" baseTableSchemaName="public" constraintName="fk_traffic_songs" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="song" referencedTableSchemaName="public" referencesUniqueColumn="false"/>
-    </changeSet>
+	<changeSet id="20181002085903-1" author="jhipster">
+		<insert tableName="artist">
+			<column name="id">1</column>
+			<column name="name">EKV</column>
+			<column name="genre_id">1</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085904-1" author="jhipster">
+		<insert tableName="artist">
+			<column name="id">2</column>
+			<column name="name">Goblini</column>
+			<column name="genre_id">2</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085905-1" author="jhipster">
+		<insert tableName="artist">
+			<column name="id">3</column>
+			<column name="name">Silvana</column>
+			<column name="genre_id">3</column>
+		</insert>
+	</changeSet>
+	
+	<changeSet id="20181002085906-1" author="jhipster">
+		<insert tableName="price">
+			<column name="id">1</column>
+			<column name="price">100</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085907-1" author="jhipster">
+		<insert tableName="price">
+			<column name="id">2</column>
+			<column name="price">150</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085908-1" author="jhipster">
+		<insert tableName="price">
+			<column name="id">3</column>
+			<column name="price">20</column>
+		</insert>
+	</changeSet>
+	
+	<changeSet id="20181002085909-1" author="jhipster">
+		<insert tableName="song">
+			<column name="id">1</column>
+			<column name="name">Sta ce mi zivot</column>
+			<column name="artist_id">3</column>
+			<column name="price_id">3</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085910-1" author="jhipster">
+		<insert tableName="song">
+			<column name="id">2</column>
+			<column name="name">Voz</column>
+			<column name="artist_id">2</column>
+			<column name="price_id">2</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085911-1" author="jhipster">
+		<insert tableName="song">
+			<column name="id">3</column>
+			<column name="name">Srce</column>
+			<column name="artist_id">1</column>
+			<column name="price_id">1</column>
+		</insert>
+	</changeSet>
+	
+	<changeSet id="20181002085912-1" author="jhipster">
+		<insert tableName="traffic">
+			<column name="id">1</column>
+			<column name="traffic_date">10/10/2018</column>
+			<column name="user">111aaa222bbb</column>
+			<column name="song_id">1</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085913-1" author="jhipster">
+		<insert tableName="traffic">
+			<column name="id">2</column>
+			<column name="traffic_date">10/11/2018</column>
+			<column name="user">222aaa333bbb</column>
+			<column name="song_id">2</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085914-1" author="jhipster">
+		<insert tableName="traffic">
+			<column name="id">3</column>
+			<column name="traffic_date">12/10/2018</column>
+			<column name="user">333aaa444bbb</column>
+			<column name="song_id">3</column>
+		</insert>
+	</changeSet>
+
+	<changeSet author="jhipster" id="20181002085807-1">
+		<addForeignKeyConstraint
+			baseColumnNames="genre_id" baseTableName="artist"
+			baseTableSchemaName="public" constraintName="fk_artists_genres"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id"
+			referencedTableName="genre" referencedTableSchemaName="public"
+			referencesUniqueColumn="false" />
+	</changeSet>
+	<changeSet author="jhipster" id="20181002085808-1">
+		<addForeignKeyConstraint
+			baseColumnNames="artist_id" baseTableName="song"
+			baseTableSchemaName="public" constraintName="fk_songs_artists"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id"
+			referencedTableName="artist" referencedTableSchemaName="public"
+			referencesUniqueColumn="false" />
+	</changeSet>
+	<changeSet author="jhipster" id="20181002085809-1">
+		<addForeignKeyConstraint
+			baseColumnNames="price_id" baseTableName="song"
+			baseTableSchemaName="public" constraintName="fk_songs_prices"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id"
+			referencedTableName="price" referencedTableSchemaName="public"
+			referencesUniqueColumn="false" />
+	</changeSet>
+	<changeSet author="jhipster" id="20181002085810-1">
+		<addForeignKeyConstraint
+			baseColumnNames="song_id" baseTableName="traffic"
+			baseTableSchemaName="public" constraintName="fk_traffic_songs"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id"
+			referencedTableName="song" referencedTableSchemaName="public"
+			referencesUniqueColumn="false" />
+	</changeSet>
 </databaseChangeLog>
