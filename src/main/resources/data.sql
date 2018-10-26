@@ -19,9 +19,9 @@ insert into node (id,node_type,properties)
  		 ('12','Song','{"name": "Sta ce mi zivot"}');
  		 
 insert into node (id,node_type,properties)
-  values ('13','Traffic','{"date": ""}'),
-  		 ('14','Traffic','{"date": ""}'),
- 		 ('15','Traffic','{"date": ""}');
+  values ('13','Traffic','{}'),
+  		 ('14','Traffic','{}'),
+ 		 ('15','Traffic','{}');
   
 insert into edge (id,edge_type,from_node_id,to_node_id,properties)
   values ('1','contains','1','4','{}'),
