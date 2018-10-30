@@ -19,26 +19,22 @@ import graphql.schema.GraphQLObjectType.Builder;
  */
 @Component
 public class AddArtistGenreMutation implements MutationBuilder {
-  
-  @Autowired private Graph g;
 
-  @Override
-  public void build (Builder aBuilder) {
-	  
-    aBuilder.field(Fields.field("addArtistGenre")
-                         .type(Scalars.GraphQLString)
-                         .argument(Arguments.notNullStringArgument("artistId"))
-                         .argument(Arguments.notNullStringArgument("genreId"))
-                         .dataFetcher((env) -> {
-                           Edge edge = SimpleEdge.builder(g) 
-                                                 .type("contains")
-                                                 .fromNodeId(env.getArgument("genreId"))
-                                                 .toNodeId(env.getArgument("artistId"))
-                                                 .build();
-                           g.add(edge);
-                           
-                           return "OK";
-                         }));
-  }
+	@Autowired
+	private Graph g;
+
+	@Override
+	public void build(Builder aBuilder) {
+
+		aBuilder.field(Fields.field("addArtistGenre").type(Scalars.GraphQLString)
+				.argument(Arguments.notNullStringArgument("artistId"))
+				.argument(Arguments.notNullStringArgument("genreId")).dataFetcher((env) -> {
+					Edge edge = SimpleEdge.builder(g).type("contains").fromNodeId(env.getArgument("genreId"))
+							.toNodeId(env.getArgument("artistId")).build();
+					g.add(edge);
+
+					return "OK";
+				}));
+	}
 
 }

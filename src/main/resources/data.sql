@@ -21,6 +21,7 @@ insert into node (id,node_type,properties)
 insert into node (id,node_type,properties)
   values ('13','Traffic','{}'),
   		 ('14','Traffic','{}'),
+  		 ('155','Traffic','{}'),
  		 ('15','Traffic','{}');
   
 insert into edge (id,edge_type,from_node_id,to_node_id,properties)
