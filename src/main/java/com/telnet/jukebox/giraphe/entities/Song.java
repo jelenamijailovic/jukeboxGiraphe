@@ -13,17 +13,17 @@ import graphql.schema.GraphQLTypeReference;
 public class Song implements TypeBuilder {
 
 	public static final String NAME = "Song";
-	  public static final GraphQLTypeReference REF = Types.ref(NAME);
+	public static final GraphQLTypeReference REF = Types.ref(NAME);
 
-	  @Override
-	  public GraphQLType build() {
-	    return Types.elementTypeBuilder()
-	                .name(NAME)
-	                .field(Fields.stringField("name"))
-	                .field(Fields.spelField("artists", "${source.from('sings')}") // SPEL Expression
-	                             .type(Types.list(Artist.REF)))
-	                .field(Fields.spelField("prices", "${source.from('relates')}") // SPEL Expression
-                            .type(Types.list(Price.REF)))
-	                .build();
-	  }
+	@Override
+	public GraphQLType build() {
+		return Types.elementTypeBuilder().name(NAME).field(Fields.stringField("name"))
+				.field(Fields.spelField("artist", "${source.from('sings')}") // SPEL Expression
+						.type(Types.list(Artist.REF)))
+				.field(Fields.spelField("price", "${source.from('relates')}") // SPEL Expression
+						.type(Types.list(Price.REF)))
+				.field(Fields.spelField("traffic", "${source.from('placed')}") // SPEL Expression
+						.type(Types.list(Traffic.REF)))
+				.build();
+	}
 }

@@ -14,15 +14,13 @@ import graphql.schema.GraphQLObjectType.Builder;
 @Component
 public class GetAllTrafficQuery implements QueryBuilder {
 
-	@Autowired private Graph g;
-	  
-	  @Override
-	  public void build(Builder aBuilder) {
-	    aBuilder.field(Fields.field("getAllTraffic")
-	                         .type(Types.list(Traffic.REF))
-	                         .dataFetcher((env) -> {
-	                           return g.nodes()
-	                                   .type(Traffic.NAME);
-	                         }));
-	  }
+	@Autowired
+	private Graph g;
+
+	@Override
+	public void build(Builder aBuilder) {
+		aBuilder.field(Fields.field("getAllTraffic").type(Types.list(Traffic.REF)).dataFetcher((env) -> {
+			return g.nodes().type(Traffic.NAME);
+		}));
+	}
 }

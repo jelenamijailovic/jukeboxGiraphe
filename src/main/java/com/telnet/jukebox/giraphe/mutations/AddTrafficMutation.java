@@ -22,14 +22,15 @@ public class AddTrafficMutation implements MutationBuilder {
 	private Graph g;
 
 	public final Date sqlDate = new java.sql.Date(System.currentTimeMillis());
-	
+
 	@Override
 	public void build(Builder aBuilder) {
-		aBuilder.field(Fields.field("addTraffic").type(Traffic.REF).argument(Arguments.notNullStringArgument("date")).argument(Arguments.notNullStringArgument("user"))
-				.dataFetcher((env) -> {
-					Node node = SimpleNode.builder(g).type(Traffic.NAME).property("id", env.getArgument("id")).property("date", sqlDate.toString()).property("songs", env.getArgument("songs")).build();
+		aBuilder.field(Fields.field("addTraffic").type(Traffic.REF).argument(Arguments.notNullStringArgument("date"))
+				.argument(Arguments.notNullStringArgument("user")).dataFetcher((env) -> {
+					Node node = SimpleNode.builder(g).type(Traffic.NAME).property("id", env.getArgument("id"))
+							.property("date", sqlDate.toString()).property("songs", env.getArgument("songs")).build();
 					return g.add(node);
 				}));
 	}
-	
+
 }

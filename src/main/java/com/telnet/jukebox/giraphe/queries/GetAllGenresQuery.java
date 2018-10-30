@@ -14,15 +14,13 @@ import graphql.schema.GraphQLObjectType.Builder;
 @Component
 public class GetAllGenresQuery implements QueryBuilder {
 
-	@Autowired private Graph g;
-	  
-	  @Override
-	  public void build(Builder aBuilder) {
-	    aBuilder.field(Fields.field("getAllGenres")
-	                         .type(Types.list(Genre.REF))
-	                         .dataFetcher((env) -> {
-	                           return g.nodes()
-	                                   .type(Genre.NAME);
-	                         }));
-	  }
+	@Autowired
+	private Graph g;
+
+	@Override
+	public void build(Builder aBuilder) {
+		aBuilder.field(Fields.field("getAllGenres").type(Types.list(Genre.REF)).dataFetcher((env) -> {
+			return g.nodes().type(Genre.NAME);
+		}));
+	}
 }

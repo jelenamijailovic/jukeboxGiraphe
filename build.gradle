@@ -62,7 +62,7 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	compile "com.github.creactiviti:giraphe:0.0.1-SNAPSHOT"
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	testCompile('com.h2database:h2')
+	//testCompile('com.h2database:h2')
 	//compile "org.springframework.boot:spring-boot-starter-actuator"
 	//compile "com.zhokhov.graphql:graphql-datetime-autoconfigure:1.2.0"
 	

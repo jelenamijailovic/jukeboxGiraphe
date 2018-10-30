@@ -15,18 +15,18 @@ import graphql.schema.GraphQLTypeReference;
  */
 @Component
 public class Artist implements TypeBuilder {
-  
-  public static final String NAME = "Artist";
-  public static final GraphQLTypeReference REF = Types.ref(NAME);
 
-  @Override
-  public GraphQLType build() {
-    return Types.elementTypeBuilder()
-                .name(NAME)
-                .field(Fields.stringField("name"))
-                .field(Fields.spelField("genres", "${source.from('contains')}") // SPEL Expression
-                             .type(Types.list(Genre.REF)))
-                .build();
-  }
+	public static final String NAME = "Artist";
+	public static final GraphQLTypeReference REF = Types.ref(NAME);
+
+	@Override
+	public GraphQLType build() {
+		return Types.elementTypeBuilder().name(NAME).field(Fields.stringField("name"))
+				.field(Fields.spelField("songs", "${source.from('sings')}") // SPEL Expression
+						.type(Types.list(Song.REF)))
+				.field(Fields.spelField("genre", "${source.from('contains')}") // SPEL Expression
+						.type(Types.list(Genre.REF)))
+				.build();
+	}
 
 }

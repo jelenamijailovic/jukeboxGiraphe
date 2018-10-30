@@ -19,21 +19,17 @@ import graphql.schema.GraphQLObjectType.Builder;
  */
 @Component
 public class AddArtistMutation implements MutationBuilder {
-  
-  @Autowired private Graph g;
 
-  @Override
-  public void build (Builder aBuilder) {
-    aBuilder.field(Fields.field("addArtist")
-                         .type(Artist.REF)
-                         .argument(Arguments.notNullStringArgument("name"))
-                         .dataFetcher((env) -> {
-                           Node node = SimpleNode.builder(g) 
-                                                 .type(Artist.NAME)
-                                                 .properties(env.getArguments())
-                                                 .build();
-                           return g.add(node);
-                         }));
-  }
+	@Autowired
+	private Graph g;
+
+	@Override
+	public void build(Builder aBuilder) {
+		aBuilder.field(Fields.field("addArtist").type(Artist.REF).argument(Arguments.notNullStringArgument("name"))
+				.dataFetcher((env) -> {
+					Node node = SimpleNode.builder(g).type(Artist.NAME).properties(env.getArguments()).build();
+					return g.add(node);
+				}));
+	}
 
 }
