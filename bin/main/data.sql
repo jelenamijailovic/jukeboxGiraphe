@@ -23,7 +23,10 @@ insert into node (id,node_type,properties)
   		 ('14','Traffic','{}'),
   		 ('155','Traffic','{}'),
  		 ('15','Traffic','{}');
-  
+ 		 
+insert into node (id,node_type,properties)
+values ('16', 'User', '{"email":"jelena@gmail.com", "password":"jecajeca"}'); 
+
 insert into edge (id,edge_type,from_node_id,to_node_id,properties)
   values ('1','contains','1','4','{}'),
   		 ('2','relates','7','10','{}'),
@@ -36,4 +39,8 @@ insert into edge (id,edge_type,from_node_id,to_node_id,properties)
   		 ('9','contains','3','6','{}'),
   		 ('10','relates','9','12','{}'),
   		 ('11','sings','6','12','{}'),
-  		 ('12','placed','12','15','{}');
+  		 ('12','placed','12','15','{}'),
+  		 ('17', 'executes', '16', '13', '{}'),
+  		 ('18', 'executes', '16', '14', '{}'),
+  		 ('19', 'executes', '16', '155', '{}'),
+  		 ('20', 'executes', '16', '15', '{}');
