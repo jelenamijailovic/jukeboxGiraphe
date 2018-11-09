@@ -26,7 +26,7 @@ public class AddTrafficMutation implements MutationBuilder {
 	@Override
 	public void build(Builder aBuilder) {
 		aBuilder.field(Fields.field("addTraffic").type(Traffic.REF)
-				.argument(Arguments.notNullStringArgument("song"))
+				 // .argument(Arguments.notNullStringArgument("songs"))
 				.argument(Arguments.notNullStringArgument("user")).dataFetcher((env) -> {
 					Node node = SimpleNode.builder(g).type(Traffic.NAME).property("id", env.getArgument("id"))
 							.property("date", sqlDate.toString()).property("song", env.getArgument("song")).property("user", env.getArgument("user")).build();
