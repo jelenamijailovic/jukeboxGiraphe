@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<property name="now" value="now()" dbms="h2" />
+	<property name="now" value="current_timestamp"
+		dbms="postgresql" />
+
+	<property name="floatType" value="float4"
+		dbms="postgresql, h2" />
+	<property name="floatType" value="float"
+		dbms="mysql, oracle, mssql" />
+
+	<changeSet id="00000000000000" author="jhipster">
+		<createSequence sequenceName="hibernate_sequence"
+			startValue="1000" incrementBy="50" />
+	</changeSet>
+
+	<!-- JHipster core tables. The initial schema has the '00000000000001' id, 
+		so that it is over-written if we re-generate it. -->
+	<changeSet id="00000000000001" author="jhipster">
+		<createTable tableName="jhi_persistent_audit_event">
+			<column name="event_id" type="bigint"
+				autoIncrement="${autoIncrement}">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="principal" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="event_date" type="timestamp" />
+			<column name="event_type" type="varchar(255)" />
+		</createTable>
+
+		<createTable tableName="jhi_persistent_audit_evt_data">
+			<column name="event_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="varchar(150)">
+				<constraints nullable="false" />
+			</column>
+			<column name="value" type="varchar(255)" />
+		</createTable>
+		<addPrimaryKey columnNames="event_id, name"
+			tableName="jhi_persistent_audit_evt_data" />
+
+		<createIndex indexName="idx_persistent_audit_event"
+			tableName="jhi_persistent_audit_event" unique="false">
+			<column name="principal" type="varchar(50)" />
+			<column name="event_date" type="timestamp" />
+		</createIndex>
+
+		<createIndex indexName="idx_persistent_audit_evt_data"
+			tableName="jhi_persistent_audit_evt_data" unique="false">
+			<column name="event_id" type="bigint" />
+		</createIndex>
+
+		<addForeignKeyConstraint
+			baseColumnNames="event_id"
+			baseTableName="jhi_persistent_audit_evt_data"
+			constraintName="fk_evt_pers_audit_evt_data"
+			referencedColumnNames="event_id"
+			referencedTableName="jhi_persistent_audit_event" />
+	</changeSet>
+
+	<changeSet id="20181002085804-1" author="jhipster">
+		<createTable tableName="genre"
+			remarks="not an ignored comment">
+			<column name="id" type="bigint"
+				autoIncrement="${autoIncrement}">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<!-- jhipster-needle-liquibase-add-column - JHipster will add columns 
+				here, do not remove -->
+		</createTable>
+
+	</changeSet>
+
+	<changeSet id="20181002085803-1" author="jhipster">
+		<createTable tableName="artist">
+			<column name="id" type="bigint"
+				autoIncrement="${autoIncrement}">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="genre_id" type="integer">
+				<constraints nullable="true" />
+			</column>
+
+			<!-- jhipster-needle-liquibase-add-column - JHipster will add columns 
+				here, do not remove -->
+		</createTable>
+
+	</changeSet>
+
+	<changeSet id="20181002085806-1" author="jhipster">
+		<createTable tableName="price"
+			remarks="Task entity. @author The JHipster team.">
+			<column name="id" type="bigint"
+				autoIncrement="${autoIncrement}">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="price" type="integer">
+				<constraints nullable="true" />
+			</column>
+
+			<!-- jhipster-needle-liquibase-add-column - JHipster will add columns 
+				here, do not remove -->
+		</createTable>
+
+	</changeSet>
+
+	<changeSet id="20181002085802-1" author="jhipster">
+		<createTable tableName="song">
+			<column name="id" type="bigint"
+				autoIncrement="${autoIncrement}">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="artist_id" type="integer">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="price_id" type="integer">
+				<constraints nullable="true" />
+			</column>
+
+			<!-- jhipster-needle-liquibase-add-column - JHipster will add columns 
+				here, do not remove -->
+		</createTable>
+	</changeSet>
+
+	<changeSet id="20181002085805-1" author="jhipster">
+		<createTable tableName="traffic">
+			<column name="id" type="bigint"
+				autoIncrement="${autoIncrement}">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="traffic_date" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="jhi_user" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="user" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="song_id" type="integer">
+				<constraints nullable="true" />
+			</column>
+
+			<!-- jhipster-needle-liquibase-add-column - JHipster will add columns 
+				here, do not remove -->
+		</createTable>
+
+	</changeSet>
+
+	<changeSet id="20181002085900-1" author="jhipster">
+		<insert tableName="genre">
+			<column name="id">1</column>
+			<column name="name">Rock</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085901-1" author="jhipster">
+		<insert tableName="genre">
+			<column name="id">2</column>
+			<column name="name">Punk</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085902-1" author="jhipster">
+		<insert tableName="genre">
+			<column name="id">3</column>
+			<column name="name">Narodna</column>
+		</insert>
+	</changeSet>
+	
+	<changeSet id="20181002085903-1" author="jhipster">
+		<insert tableName="artist">
+			<column name="id">1</column>
+			<column name="name">EKV</column>
+			<column name="genre_id">1</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085904-1" author="jhipster">
+		<insert tableName="artist">
+			<column name="id">2</column>
+			<column name="name">Goblini</column>
+			<column name="genre_id">2</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085905-1" author="jhipster">
+		<insert tableName="artist">
+			<column name="id">3</column>
+			<column name="name">Silvana</column>
+			<column name="genre_id">3</column>
+		</insert>
+	</changeSet>
+	
+	<changeSet id="20181002085906-1" author="jhipster">
+		<insert tableName="price">
+			<column name="id">1</column>
+			<column name="price">100</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085907-1" author="jhipster">
+		<insert tableName="price">
+			<column name="id">2</column>
+			<column name="price">150</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085908-1" author="jhipster">
+		<insert tableName="price">
+			<column name="id">3</column>
+			<column name="price">20</column>
+		</insert>
+	</changeSet>
+	
+	<changeSet id="20181002085909-1" author="jhipster">
+		<insert tableName="song">
+			<column name="id">1</column>
+			<column name="name">Sta ce mi zivot</column>
+			<column name="artist_id">3</column>
+			<column name="price_id">3</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085910-1" author="jhipster">
+		<insert tableName="song">
+			<column name="id">2</column>
+			<column name="name">Voz</column>
+			<column name="artist_id">2</column>
+			<column name="price_id">2</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085911-1" author="jhipster">
+		<insert tableName="song">
+			<column name="id">3</column>
+			<column name="name">Srce</column>
+			<column name="artist_id">1</column>
+			<column name="price_id">1</column>
+		</insert>
+	</changeSet>
+	
+	<changeSet id="20181002085912-1" author="jhipster">
+		<insert tableName="traffic">
+			<column name="id">1</column>
+			<column name="traffic_date">10/10/2018</column>
+			<column name="user">111aaa222bbb</column>
+			<column name="song_id">1</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085913-1" author="jhipster">
+		<insert tableName="traffic">
+			<column name="id">2</column>
+			<column name="traffic_date">10/11/2018</column>
+			<column name="user">222aaa333bbb</column>
+			<column name="song_id">2</column>
+		</insert>
+	</changeSet>
+	<changeSet id="20181002085914-1" author="jhipster">
+		<insert tableName="traffic">
+			<column name="id">3</column>
+			<column name="traffic_date">12/10/2018</column>
+			<column name="user">333aaa444bbb</column>
+			<column name="song_id">3</column>
+		</insert>
+	</changeSet>
+
+	<changeSet author="jhipster" id="20181002085807-1">
+		<addForeignKeyConstraint
+			baseColumnNames="genre_id" baseTableName="artist"
+			baseTableSchemaName="public" constraintName="fk_artists_genres"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id"
+			referencedTableName="genre" referencedTableSchemaName="public"
+			referencesUniqueColumn="false" />
+	</changeSet>
+	<changeSet author="jhipster" id="20181002085808-1">
+		<addForeignKeyConstraint
+			baseColumnNames="artist_id" baseTableName="song"
+			baseTableSchemaName="public" constraintName="fk_songs_artists"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id"
+			referencedTableName="artist" referencedTableSchemaName="public"
+			referencesUniqueColumn="false" />
+	</changeSet>
+	<changeSet author="jhipster" id="20181002085809-1">
+		<addForeignKeyConstraint
+			baseColumnNames="price_id" baseTableName="song"
+			baseTableSchemaName="public" constraintName="fk_songs_prices"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id"
+			referencedTableName="price" referencedTableSchemaName="public"
+			referencesUniqueColumn="false" />
+	</changeSet>
+	<changeSet author="jhipster" id="20181002085810-1">
+		<addForeignKeyConstraint
+			baseColumnNames="song_id" baseTableName="traffic"
+			baseTableSchemaName="public" constraintName="fk_traffic_songs"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id"
+			referencedTableName="song" referencedTableSchemaName="public"
+			referencesUniqueColumn="false" />
+	</changeSet>
+</databaseChangeLog>
