@@ -22,8 +22,8 @@ public class Song implements TypeBuilder {
 						.type(Types.list(Artist.REF)))
 				.field(Fields.spelField("price", "${source.from('relates')}") // SPEL Expression
 						.type(Types.list(Price.REF)))
-				.field(Fields.spelField("traffic", "${source.from('placed')}") // SPEL Expression
-						.type(Types.list(Traffic.REF)))
+				/*.field(Fields.spelField("traffic", "${source.from('placed')}") // SPEL Expression
+						.type(Types.list(Traffic.REF)))*/
 				.build();
 	}
 }

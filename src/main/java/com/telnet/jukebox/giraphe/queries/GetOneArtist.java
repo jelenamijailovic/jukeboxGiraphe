@@ -25,8 +25,15 @@ public class GetOneArtist implements MutationBuilder {
 	@Override
 	public void build(Builder aBuilder) {
 		aBuilder.field(Fields.field("getOneArtist").type(Types.list(Artist.REF))
-				.argument(Arguments.stringArgument("id")).dataFetcher((env) -> {
-					return g.nodes().type(Artist.NAME).hasId(env.getArgument("id"));
+				.argument(Arguments.stringArgument("name")).dataFetcher((env) -> {
+					//System.out.println("PROBA PROBA " + env.getArguments());
+					// System.out.println(g.nodes().type(Artist.NAME).has("name",
+					// env.getArgument("name")));
+					// System.out.println(JSON.write(env.getArguments()));
+					// System.out.println("gfagfdsgfs: "+env.getArgument("name"));
+					System.out.println(g.nodes().type(Artist.NAME).has("name", env.getArgument("name")).iterator().next()
+							.property("name").toString());
+					return g.nodes().type(Artist.NAME).has("name", env.getArgument("name"));
 				}));
 	}
 

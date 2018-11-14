@@ -21,8 +21,8 @@ public class Traffic implements TypeBuilder {
 
 	@Override
 	public GraphQLType build() {
-		return Types.elementTypeBuilder().name(NAME).field(Fields.stringField("user"))
-				.field(Fields.spelField("song", "${source.from('placed')}") // SPEL Expression
+		return Types.elementTypeBuilder().name(NAME).field(Fields.stringField("user")).field(Fields.stringField("date"))
+				.field(Fields.spelField("songs", "${source.from('placed')}") // SPEL Expression
 						.type(Types.list(Song.REF)))
 				.build();
 	}
